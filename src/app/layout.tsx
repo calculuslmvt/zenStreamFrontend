@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { MainNavigationMenu } from "@/components/ui/main-navigation-menu";
+import Image from 'next/image';
+import logo from '../../public/zenStream.svg';
+import mountains from '../../public/pexels-stywo-1261728.jpg'
+import { relative } from "path";
+import Link from "next/link";
+import { SideMenu } from "@/components/ui/side-menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +22,66 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="dark">
+      
+      <body className={`${inter.className}`}>
+
+        <div>
+          <div style={{position: "absolute", zIndex: -1}} className=" w-full min-h-screen">
+            <Image
+              alt="Mountains"
+              src={mountains} 
+              placeholder="blur"
+              quality={100}
+              fill
+              sizes="100vw"
+              style={{
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+          
+
+          {/* Nav bar  */}
+          <div className="flex flex-row py-2 bg-slate-500/40">
+            <div className="w-1/3 flex">
+                <div className="flex justify-center items-center px-2">
+                  <Link href="/">
+                    <SideMenu/>
+                  </Link>
+                </div>
+              <div 
+                style={{ position: 'relative', height: '50px' ,width: '150px'}}>
+                <Link href="/">
+                  <Image
+                    className="px-2 rounded-xl"
+                    alt="Logo here"
+                    src={logo}
+                    fill
+                    style={{
+                      objectFit: 'cover', // cover, contain, none
+                    }}
+                  />
+                </Link>
+            </div>
+          </div>
+          <div className="flex w-full justify-center">
+            <MainNavigationMenu/>
+          </div>
+          <div className="flex w-1/3 gap-4 justify-center items-center">
+            <div>
+                <button className="text-slate-200">Login</button>
+            </div> 
+            <div>
+              <button className="text-slate-200">Logout</button>
+            </div>
+          </div>
+          
+        </div>
+        
+        {children}
+        </div>
+      </body>
     </html>
   );
 }
