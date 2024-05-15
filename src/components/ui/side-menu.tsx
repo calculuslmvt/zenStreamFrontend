@@ -23,12 +23,14 @@ const sideMenuCardList = [
     {
         cardTitle: " Buddhism",
         cardContent: "Test content one one Test content one one Test content one one   ",
-        cardImage: " https://bigthink.com/wp-content/uploads/2023/02/AdobeStock_557083387_3200x1800.jpeg"
+        cardImage: " https://bigthink.com/wp-content/uploads/2023/02/AdobeStock_557083387_3200x1800.jpeg",
+        index: 1
     },
     {
         cardTitle: " Zen",
         cardContent: "Test content one one  ",
-        cardImage: "https://production.listennotes.com/podcasts/feed-your-brain/life-as-it-is-ambient-bUJATzWxOVF-pxX1zJZnsEr.1400x1400.jpg"
+        cardImage: "https://production.listennotes.com/podcasts/feed-your-brain/life-as-it-is-ambient-bUJATzWxOVF-pxX1zJZnsEr.1400x1400.jpg",
+        index: 2
     },
 
 ]
@@ -75,7 +77,7 @@ const sideMenuCardList = [
 
 
         {sideMenuCardList.map((value) => (
-            <div className="p-2">
+            <div key={value.index} className="p-2">
                 <SideMenuCard {...value}/>
             </div>
         ))}
