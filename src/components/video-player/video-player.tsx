@@ -7,10 +7,10 @@ function VideoPlayer(props:any) {
     <div>
         <div className="player-wrapper">
             <ReactPlayer
-                className="react-player"
+                className="react-player rounded-sm  bg-slate-50/60"
                 url={props.url}
-                width="200px"
-                height="150px"
+                width="70vh"
+                height="50vh"
                 controls
             />
         </div>

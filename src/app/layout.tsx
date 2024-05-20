@@ -46,9 +46,7 @@ export default function RootLayout({
           <div className="flex flex-row py-2 bg-slate-500/40">
             <div className="w-1/3 flex">
                 <div className="flex justify-center items-center px-2">
-                  <Link href="/">
                     <SideMenu/>
-                  </Link>
                 </div>
               <div 
                 style={{ position: 'relative', height: '50px' ,width: '150px'}}>

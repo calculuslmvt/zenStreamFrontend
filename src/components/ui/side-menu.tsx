@@ -16,24 +16,25 @@ import Image from "next/image"
 import logo from "../../../public/zenStream.svg";
 import { Separator } from "@/components/ui/separator"
 import SideMenuCard from "./side-menu-card"
+import { DropMenu } from "./accordion"
 
 export function SideMenu() {
 
 const sideMenuCardList = [
     {
-        cardTitle: " Buddhism",
+        cardTitle: "Buddhism",
         cardContent: "Test content one one Test content one one Test content one one   ",
         cardImage: " https://bigthink.com/wp-content/uploads/2023/02/AdobeStock_557083387_3200x1800.jpeg",
         index: 1
     },
     {
-        cardTitle: " Zen",
+        cardTitle: "Zen",
         cardContent: "Test content one one  ",
         cardImage: "https://production.listennotes.com/podcasts/feed-your-brain/life-as-it-is-ambient-bUJATzWxOVF-pxX1zJZnsEr.1400x1400.jpg",
         index: 2
     },
 
-]
+];
 
   return (
     <Sheet>
@@ -45,12 +46,13 @@ const sideMenuCardList = [
           <SheetTitle>
             <div className="flex gap-2">
                 <div className="flex justify-center items-center">
-                    <SheetClose asChild>
+                    
+                    <SheetClose>
                         <Button variant="outline"> = </Button>
                     </SheetClose>
-                </div>
+                </div>                                                
                 
-                <div 
+                <div                                                                                                            
                     style={{ position: 'relative', height: '50px' ,width: '150px'}}>
                     <Link href="/">
                     <Image
@@ -74,8 +76,14 @@ const sideMenuCardList = [
           </SheetTitle>
           <Separator className="my-4 bg-slate-300/30" />
         </SheetHeader>
-
-
+        <div className="px-2">
+          <DropMenu/>
+        </div>    
+        
+        <Separator className="my-4 bg-slate-300/30" />
+        <div className="flex justify-center text-sm text-slate-400">
+          Topics
+        </div>
         {sideMenuCardList.map((value) => (
             <div key={value.index} className="p-2">
                 <SideMenuCard {...value}/>
