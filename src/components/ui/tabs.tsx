@@ -7,11 +7,10 @@ import logo from "../../../public/zenStream.svg"
 import { ContentDrawer } from "./content-drawer";
 
 type ContentDataType = {
-    videoKey: string ,
-    videoTitle: string,
-    videoThumbnail: string,
-    videoUrl: string,
-    videoTextContent: string
+    title: string,
+    thumbnail: string,
+    description: string,
+    videoFile: string
 };
 
 type PropType = {

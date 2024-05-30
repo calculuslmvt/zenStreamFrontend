@@ -1,3 +1,4 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -17,24 +18,41 @@ import logo from "../../../public/zenStream.svg";
 import { Separator } from "@/components/ui/separator"
 import SideMenuCard from "./side-menu-card"
 import { DropMenu } from "./accordion"
+import axios from "axios"
+import { Key, useEffect, useState } from "react"
+
+type PropsType = {
+  cardTitle: string,
+  cardContent: string,
+  cardImage: string
+};
 
 export function SideMenu() {
 
-const sideMenuCardList = [
-    {
-        cardTitle: "Buddhism",
-        cardContent: "Test content one one Test content one one Test content one one   ",
-        cardImage: " https://bigthink.com/wp-content/uploads/2023/02/AdobeStock_557083387_3200x1800.jpeg",
-        index: 1
-    },
-    {
-        cardTitle: "Zen",
-        cardContent: "Test content one one  ",
-        cardImage: "https://production.listennotes.com/podcasts/feed-your-brain/life-as-it-is-ambient-bUJATzWxOVF-pxX1zJZnsEr.1400x1400.jpg",
-        index: 2
-    },
+const [sideMenuCardList, setSideMenuCardList] = useState(); 
+const [component, setComponent] = useState(<div> Loading... </div>); 
+useEffect(()=> {
 
-];
+  const fetchData = async () => {
+      const url = "/api/get-topics"; 
+      const response = await axios.post(url, {topicName: "all-topics"});
+      console.log(response.data?.data);
+  
+      setComponent(response.data?.data.map((value: { topicName: any; description: any; thumbnail: any }, index: Key | null | undefined) => {
+        const cardData : PropsType = {
+          cardTitle: value.topicName,
+          cardContent: value.description,
+          cardImage: value.thumbnail
+        }
+        return (<div key={index} className="p-2">
+            <SideMenuCard {...cardData}/>
+        </div>); 
+    }))
+      setSideMenuCardList(response.data?.data);  
+      
+  }
+  fetchData(); 
+},[])
 
   return (
     <Sheet>
@@ -84,12 +102,8 @@ const sideMenuCardList = [
         <div className="flex justify-center text-sm text-slate-400">
           Topics
         </div>
-        {sideMenuCardList.map((value) => (
-            <div key={value.index} className="p-2">
-                <SideMenuCard {...value}/>
-            </div>
-        ))}
-        
+
+        {component}
         
         <SheetFooter>
         </SheetFooter>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { ContentTabs } from '@/components/ui/tabs';
 import axios from 'axios';
+import Loading from '@/components/ui/loading';
 
 function Topics({ params }: { params: { id:string } }) {
 
@@ -14,10 +15,16 @@ function Topics({ params }: { params: { id:string } }) {
 
         try {
         const url = '/api/get-topic-data'; 
-        const response = await axios.post(url, {topicName: topicName});
-        console.log(response?.data?.data); 
-        setLoading(false);
-        setComponent(<ContentTabs {...response?.data?.data}/>)
+        axios.post(url, {topicName: topicName})
+        .then((response) => {
+          const topicData = {
+            topicName: topicName,
+            contentData: response.data?.data
+          }
+          console.log(response.data); 
+          setComponent(<ContentTabs {...topicData}/>);
+          setLoading(false);
+        })
         } catch (error) {
         console.log(error); 
         }
@@ -27,7 +34,7 @@ function Topics({ params }: { params: { id:string } }) {
     },[]);
   return (
     <div>
-        {loading ? (<div>Loading... </div>) : component }
+        {loading ? (<Loading/>) : component }
     </div>
   )
 }
