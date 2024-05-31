@@ -6,7 +6,9 @@ function Logout() {
 
   const updateUsername = useUserStore((state) => state.updateUsername);
   updateUsername(""); 
-  window.sessionStorage.setItem("username", ""); 
+  if(typeof window !== undefined) {
+    window.sessionStorage.setItem("username", "");
+  }
   location.replace("/");
   return (
     <div>

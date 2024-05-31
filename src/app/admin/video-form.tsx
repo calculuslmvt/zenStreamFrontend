@@ -1,15 +1,16 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"; 
+import { register } from "module";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import axios from "axios";
 import { useUserStore } from "@/store/store";
 import { useCallback, useEffect, useState } from "react";
 
+
 const videoSchema = z.object({
-    videoFile: z.string().min(2),
-    thumbnail: z.string().min(0),
-    title: z.string().min(2),
+    videoId: z.string().min(2).trim(),
+    title: z.string().min(2).trim(),
     description: z.string().min(2)
 });
 
@@ -22,6 +23,7 @@ const Loading = (
         >Loading...</span>
     </div>
 ); 
+
 
 export default function VideoForm(){
     type videoFormFields = z.infer<typeof videoSchema>;
@@ -42,7 +44,8 @@ export default function VideoForm(){
                 <select 
                 className=" text-slate-300 bg-black px-2 rounded-lg"
                 onChange={handleChange}>
-                    {topics.map((value :any, index: any) => {
+                    <option value="none">Select Topic</option>
+                   {topics.map((value :any, index: any) => {
                         return (
                             <option key={index}>
                                 {value.topicName}
@@ -73,22 +76,23 @@ export default function VideoForm(){
     },[]);
 
     const onVideoSubmit: SubmitHandler<videoFormFields> = async (data) => {
-        console.log("newData");     
         const newData = {
             ...data,
             topicName: topicName
         }
+        console.log(newData);
         try {
             setLoading(true);
-            const response = await axios.post("/add-video", newData);
+            setComponent(Loading); 
+            const response = await axios.post("/api/add-video", newData);
             console.log(response); 
             setComponent(
                 <div className="text-green-400 text-sm">
                     Video uploaded successfully!
                 </div>
             )
-            setLoading(false);
         } catch (error : any) {
+            setLoading(false); 
             setError("root", {
                 message: error?.response?.data.error
             })
@@ -109,7 +113,7 @@ export default function VideoForm(){
                     <div className=" text-xl">
                         Add Video
                     </div>
-                    {/* {topicList} */}
+                    {topicList}
                     <div className="flex w-full">
                     <label className="flex p-2 w-2/3 justify-start">
                             Title
@@ -128,17 +132,17 @@ export default function VideoForm(){
                 )}
                 <div className="flex w-full">
                     <label className="p-2 w-1/3">
-                    Video URL
+                    Video Id
                     </label>
-                    <input {...register("videoFile", {
+                    <input {...register("videoId", {
                         required: true,
                     })} type="text"
                         placeholder="URL"
                         className="text-slate-300 bg-black p-1 px-2 rounded-lg"/>
                 </div>
-                {errors.videoFile && (
+                {errors.videoId && (
                     <div className="text-red-400 text-xs">
-                        {errors.videoFile.message}
+                        {errors.videoId.message}
                     </div>
                 )}
                 <div className="flex w-full">

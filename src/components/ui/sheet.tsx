@@ -33,7 +33,7 @@ SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 const SheetClose = SheetPrimitive.Close; 
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 w-1/2 backdrop-blur-sm bg-slate-800/80 p-2 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-300",
+  "fixed z-50 gap-4 w-1/2 backdrop-blur-sm bg-slate-800/80 p-2 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-300 overflow-y-auto overflow-x-hidden scrollbar-hide h-64",
   {
     variants: {
       side: {

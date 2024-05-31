@@ -5,6 +5,7 @@ import { z } from "zod";
 import axios from "axios";
 import { useUserStore } from "@/store/store";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
     email: z.string().email(),
@@ -39,6 +40,8 @@ export default function Login(){
             setUsername(username);
             setComponent(<div> welcome {username}</div>);
             window.sessionStorage.setItem("username", username); 
+
+            location.replace("/"); 
 
         } catch (error : any) {
             setError("root", {

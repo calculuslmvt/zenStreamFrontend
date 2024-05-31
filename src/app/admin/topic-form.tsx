@@ -36,7 +36,15 @@ export default function TopicForm(){
     const onTopicSubmit: SubmitHandler<topicFormFields> = async (data) => {
         console.log(data);
         try {
-
+            setLoading(true); 
+            setComponent(Loading); 
+            const response = await axios.post("/api/add-topic", data);
+            console.log(response); 
+            setComponent(
+                <div className="text-green-400 text-sm">
+                    Topic uploaded successfully!
+                </div>
+            )
 
         } catch (error : any) {
             setError("root", {

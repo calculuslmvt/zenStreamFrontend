@@ -18,6 +18,7 @@ import VideoPlayer from "../video-player/video-player"
 import { Separator } from "./separator"
 import axios, { AxiosError } from "axios"
 import { useState } from "react"
+import Link from "next/link"
 
 type PropsType = {
   title: string,
@@ -64,13 +65,22 @@ export function ContentDrawer(props: PropsType) {
       )
     }
   }
-
+  const username = window.sessionStorage.getItem("username");
   const [component, setComponent] = useState(
-    <button
-      onClick={handleAddToFavourite}
-      className="text-sm p-3 bg-black/40 rounded-lg">
-      Add to favourites
-    </button>
+    username ? (
+          <button
+            onClick={handleAddToFavourite}
+            className="text-sm p-3 bg-black/40 rounded-lg">
+            Add to favourites
+          </button>
+    ) : (
+          <Link
+          href="/login"
+          className="text-sm p-3 bg-black/40 rounded-lg">
+          Login to add to favourites
+          </Link>
+    )
+
   );
 
   return (

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 import logo from "../../../public/zenStream.svg"
 import { ContentDrawer } from "./content-drawer";
+import Link from "next/link";
 
 type ContentDataType = {
     title: string,
@@ -30,9 +31,11 @@ export function ContentTabs(props : PropType ) {
         content: (
           <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
             <p className="px-4">{topicName}</p>
-            <div className="p-2 text-lg flex">
+            <div className="p-2 text-lg grid grid-cols-4 gap-2 overflow-y-auto overflow-x-hidden scrollbar-hide h-full">
                 {contentData?.map((drawerValue, index) => (
-                    <div key={index}>
+                    <div
+                        className="flex" 
+                        key={index}>
                         <ContentDrawer {...drawerValue}/>
                     </div>
                 ))}
@@ -45,7 +48,8 @@ export function ContentTabs(props : PropType ) {
         value: "type2",
         content: (
           <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
-            <p>Comment section here</p>
+            <p>Comment</p>
+            <br />
             <DummyContent />
           </div>
         ),
@@ -54,16 +58,27 @@ export function ContentTabs(props : PropType ) {
     ];
    
     return (
-      <div className="h-[20rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-2">
+      <div className="md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-2 overflow-y-auto overflow-x-hidden scrollbar-hide h-64">
         <Tabs tabs={tabs} />
       </div>
     );
   }
    
   const DummyContent = () => {
+    const username = window.sessionStorage.getItem("username");
+    const component = "Please Login";
+    if(!username) {
+      return (
+        <Link href="/login">
+          <div className=" text-amber-600 text-xl"> {component}</div>
+        </Link>
+      )
+    }
+
     return (
-        <div>
-            hi there 
+        <div className="flex gap-2">
+            <input className=" bg-slate-500 h-10 text-sm" type="text" /> 
+            <button className="p-2 bg-slate-400/60 rounded-lg h-10 text-sm"> Submit</button>
         </div>
     );
   };
@@ -106,7 +121,7 @@ export const Tabs = ({
     <>
       <div
         className={cn(
-          "flex flex-row items-center justify-start [perspective:1000px] relative overflow-auto sm:overflow-visible no-visible-scrollbar max-w-full w-full",
+          "flex flex-row items-center justify-start [perspective:100px] relative overflow-auto sm:overflow-visible max-w-full w-full",
           containerClassName
         )}
       >
@@ -118,7 +133,7 @@ export const Tabs = ({
             }}
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
-            className={cn("relative px-4 py-2 rounded-full", tabClassName)}
+            className={cn("relative px-4 py-2 rounded-full ", tabClassName)}
             style={{
               transformStyle: "preserve-3d",
             }}
@@ -134,7 +149,7 @@ export const Tabs = ({
               />
             )}
 
-            <span className="relative block text-black dark:text-white">
+            <span className="relative block text-black dark:text-white ">
               {tab.title}
             </span>
           </button>

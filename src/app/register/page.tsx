@@ -37,6 +37,10 @@ export default function Login(){
             setLoading(true); 
             const response = await axios.post("api/user/register-user",data); 
             console.log(response);
+            const username = data.username; 
+            window.sessionStorage.setItem("username", username); 
+
+            location.replace("/");
             setComponent(<div>{`${response?.data?.message}`}</div>); 
         } catch (error : any) {
             setError("root", {

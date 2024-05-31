@@ -19,8 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [component, setComponent] = useState("none"); 
-  const username = useUserStore((state:any) => state.username) || window
-    .sessionStorage.getItem("username"); 
+  const [username, setUsername] = useState("");  
+  useEffect(()=>{
+      if(typeof window !== undefined){
+        setUsername(window?.sessionStorage.getItem("username")!); 
+  }
+  })
+
   return (
     <html lang="en" className="dark">
       <head>

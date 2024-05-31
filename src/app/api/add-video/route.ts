@@ -10,16 +10,16 @@ export async function POST(request : NextRequest) {
         const { topicName, videoId, title, description } = reqBody;
 
         console.log(reqBody);
-
-        const video = await Video.findOne({title});
-        
+        const videoFile = "https://youtu.be/" + videoId; 
+        const thumbnail = "https://img.youtube.com/vi/" + videoId + "/0.jpg"; 
+        const video = await Video.findOne({videoFile: videoFile});
+        console.log(video); 
         if(video) {
             return NextResponse.json({error: "Video already exists"}, {status: 400}); 
         }
         console.log(video);
 
-        const videoFile = "https://youtu.be/" + videoId; 
-        const thumbnail = "https://img.youtube.com/vi/" + videoId + "/0.jpg"; 
+
 
         const newVideo = new Video({
             videoFile,

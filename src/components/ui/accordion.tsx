@@ -5,8 +5,13 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { ChevronDownIcon } from "@radix-ui/react-icons"
 
 import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export function DropMenu() {
+  const handleClick = () => {
+    console.log("clicked");
+    location.replace("/favourites");
+  }
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
@@ -18,9 +23,12 @@ export function DropMenu() {
             </AccordionTrigger>
         </div>
         <AccordionContent>
-          <button className="text-slate-200"> 
-            Favourites
-          </button>
+          <Link href="/favourites" onClick={handleClick}>          
+            <button className="text-slate-200"> 
+              Favourites
+            </button>
+          </Link>
+
         </AccordionContent>
         <AccordionContent>
           <button className="text-slate-200">

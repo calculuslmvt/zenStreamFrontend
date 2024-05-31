@@ -21,8 +21,8 @@ export async function POST(request : NextRequest) {
         console.log(user, video); 
         const userVideos = user.playlist;
         console.log(userVideos, video._id);
-        console.log(userVideos[0].equals(video._id));
-        if(userVideos.find((value : any ) => value.equals(video._id))) {
+        console.log(userVideos[0]?.equals(video._id));
+        if(userVideos.length > 0 && userVideos.find((value : any ) => value.equals(video._id))) {
            return NextResponse.json(
                 {error: "Video already added"},
                 {status: 400}
