@@ -31,6 +31,7 @@ function Favourites() {
             })
         } catch (error) {
                 console.log(error);  
+                location.replace("/login"); 
         }
         
     }
