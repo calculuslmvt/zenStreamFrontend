@@ -100,7 +100,7 @@ export function ContentDrawer(props: PropsType) {
               <Separator className="hidden sm:bg-slate-100/50 sm:flex sm:items-center" orientation="vertical" />
           </div>
           <div className="w-0 sm:w-1/2 flex sm:flex-col gap-2 backdrop-blur-lg bg-slate-300/30 p-2 rounded-sm">
-            <div className="hidden lg:visible text-xl text-slate-300 flex gap-2 justify-center items-center">
+            <div className="lg:visible text-xl text-slate-300 flex gap-2 justify-center items-center">
               {videoTitle} 
               {component}
             </div> 
