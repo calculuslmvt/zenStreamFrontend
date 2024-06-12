@@ -23,6 +23,8 @@ function VideoPlayer(props:any) {
             <ReactPlayer
                 className={`react-player items-center justify-center w-10 h-10 sm:h-[70vh] sm:w-[50vh]`}
                 url={props.url}
+                height="25rem"
+                width="25rem"
                 controls
                 onReady={handleReadyState}
             />

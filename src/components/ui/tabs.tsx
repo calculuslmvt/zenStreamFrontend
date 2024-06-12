@@ -58,9 +58,12 @@ export function ContentTabs(props : PropType ) {
     ];
    
     return (
-      <div className="h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-2 overflow-y-auto overflow-x-hidden scrollbar-hide">
-        <Tabs tabs={tabs} />
+      <div className="w-full flex justify-center h-screen fixed z-[-2]">
+        <div className="h-[40rem] z-[-2] [perspective:1000px] fixed b flex items-center justify-center flex-col max-w-5xl mx-auto w-full my-2 overflow-y-auto overflow-x-hidden scrollbar-hide">
+          <Tabs tabs={tabs} />
+        </div>
       </div>
+
     );
   }
    

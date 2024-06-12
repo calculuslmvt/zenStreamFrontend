@@ -34,7 +34,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className}`}>
         <div>
-          <div style={{position: "absolute", zIndex: -1}} className=" w-full min-h-screen">
+          <div style={{position: "absolute", zIndex: -3}} className=" w-full min-h-screen">
             <Image
               alt="Zenstream"
               src={mountains} 
@@ -70,7 +70,7 @@ export default function RootLayout({
                 </Link>
             </div>
           </div>
-          <div className="flex w-full justify-center">
+          <div className="flex w-full justify-center z-[9999]">
             <MainNavigationMenu/>
           </div>
           <div className=" hidden sm:flex w-1/3 gap-4 justify-center items-center">
