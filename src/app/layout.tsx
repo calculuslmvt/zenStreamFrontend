@@ -36,7 +36,7 @@ export default function RootLayout({
         <div>
           <div style={{position: "absolute", zIndex: -1}} className=" w-full min-h-screen">
             <Image
-              alt="Mountains"
+              alt="Zenstream"
               src={mountains} 
               placeholder="blur"
               quality={100}
@@ -50,7 +50,7 @@ export default function RootLayout({
           
 
           {/* Nav bar  */}
-          <div className="flex flex-row py-2 bg-slate-500/40">
+          <div className="flex flex-row py-2 bg-slate-500/40 backdrop-blur-sm">
             <div className="w-1/3 flex">
                 <div className="flex justify-center items-center px-2">
                     <SideMenu/>
@@ -73,7 +73,7 @@ export default function RootLayout({
           <div className="flex w-full justify-center">
             <MainNavigationMenu/>
           </div>
-          <div className="flex w-1/3 gap-4 justify-center items-center">
+          <div className=" hidden sm:flex w-1/3 gap-4 justify-center items-center">
             <div>
               <Link href="/login">             
                 <button className="text-slate-200">

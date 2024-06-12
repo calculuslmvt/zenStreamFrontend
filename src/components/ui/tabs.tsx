@@ -31,7 +31,7 @@ export function ContentTabs(props : PropType ) {
         content: (
           <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-slate-700 to-slate-900">
             <p className="px-4">{topicName}</p>
-            <div className="p-2 text-lg grid grid-cols-4 gap-2 overflow-y-auto overflow-x-hidden scrollbar-hide h-full">
+            <div className="p-2 text-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 overflow-y-auto overflow-x-hidden scrollbar-hide h-full">
                 {contentData?.map((drawerValue, index) => (
                     <div
                         className="flex" 
@@ -58,7 +58,7 @@ export function ContentTabs(props : PropType ) {
     ];
    
     return (
-      <div className="md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-2 overflow-y-auto overflow-x-hidden scrollbar-hide h-64">
+      <div className="h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-2 overflow-y-auto overflow-x-hidden scrollbar-hide">
         <Tabs tabs={tabs} />
       </div>
     );

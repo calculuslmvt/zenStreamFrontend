@@ -92,15 +92,15 @@ export function ContentDrawer(props: PropsType) {
       </DrawerTrigger>
       <DrawerContent>
         <div className=" flex mx-auto w-full h-[60vh] p-4 gap-2"> 
-          <div className="w-1/2 flex items-center justify-center">
+          <div className="w-full sm:w-1/2 flex items-center justify-center">
             <VideoPlayer url= {videoUrl}/>  
           </div>
 
           <div> 
-              <Separator className=" bg-slate-100/50 flex items-center" orientation="vertical" />
+              <Separator className="hidden sm:bg-slate-100/50 sm:flex sm:items-center" orientation="vertical" />
           </div>
-          <div className="w-1/2 flex flex-col gap-2 bg-slate-300/30 p-2 rounded-sm">
-            <div className="text-xl text-slate-300 flex gap-2 justify-center items-center">
+          <div className="w-0 sm:w-1/2 flex sm:flex-col gap-2 backdrop-blur-lg bg-slate-300/30 p-2 rounded-sm">
+            <div className="hidden lg:visible text-xl text-slate-300 flex gap-2 justify-center items-center">
               {videoTitle} 
               {component}
             </div> 

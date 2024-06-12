@@ -19,12 +19,10 @@ function VideoPlayer(props:any) {
         <Loading/>
       </div>
       
-        <div className={`player-wrapper ${display}`}>
+        <div className={`player-wrapper ${display} w-full`}>
             <ReactPlayer
-                className={`react-player`}
+                className={`react-player items-center justify-center w-10 h-10 sm:h-[70vh] sm:w-[50vh]`}
                 url={props.url}
-                width="70vh"
-                height="50vh"
                 controls
                 onReady={handleReadyState}
             />
