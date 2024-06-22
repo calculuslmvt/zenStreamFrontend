@@ -10,7 +10,7 @@ export async function POST(request : NextRequest) {
         const { topicName, videoId, title, description } = reqBody;
 
         console.log(reqBody);
-        const videoFile = "https://youtu.be/" + videoId; 
+        const videoFile = videoId; 
         const thumbnail = "https://img.youtube.com/vi/" + videoId + "/0.jpg"; 
         const video = await Video.findOne({videoFile: videoFile});
         console.log(video); 

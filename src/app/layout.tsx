@@ -9,7 +9,7 @@ import mountains from '../../public/pexels-stywo-1261728.jpg'
 import Link from "next/link";
 import { SideMenu } from "@/components/ui/side-menu";
 import { useUserStore } from "@/store/store";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,16 +18,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [component, setComponent] = useState("none"); 
+
   const [username, setUsername] = useState("");  
+  const updateUsername = useUserStore((state) => state.updateUsername);
   useEffect(()=>{
       if(typeof window !== undefined){
         setUsername(window?.sessionStorage.getItem("username")!); 
+        updateUsername(username); 
   }
-  })
+  },[]);
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark scroll-smooth scrollbar-hide">
       <head>
         <title>Zenstream</title>
         <meta name='description' content='Description' />
@@ -50,7 +52,7 @@ export default function RootLayout({
           
 
           {/* Nav bar  */}
-          <div className="flex flex-row py-2 bg-slate-500/40 backdrop-blur-sm">
+          <div className="flex flex-row py-2 bg-slate-900/40 backdrop-blur-sm">
             <div className="w-1/3 flex">
                 <div className="flex justify-center items-center px-2">
                     <SideMenu/>

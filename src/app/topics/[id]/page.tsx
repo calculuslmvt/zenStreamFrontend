@@ -1,14 +1,14 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { ContentTabs } from '@/components/ui/tabs';
+import { ContentSection } from '@/components/ui/tabs';
 import axios from 'axios';
 import Loading from '@/components/ui/loading';
 
 function Topics({ params }: { params: { id:string } }) {
 
     const topicName = params.id;
-    const [component, setComponent] = useState(<ContentTabs/>); 
+    const [component, setComponent] = useState(<ContentSection/>); 
     const [loading, setLoading] = useState(true); 
     useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +22,7 @@ function Topics({ params }: { params: { id:string } }) {
             contentData: response.data?.data
           }
           console.log(response.data); 
-          setComponent(<ContentTabs {...topicData}/>);
+          setComponent(<ContentSection {...topicData}/>);
           setLoading(false);
         })
         } catch (error) {

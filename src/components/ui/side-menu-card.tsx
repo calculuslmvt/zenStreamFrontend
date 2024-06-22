@@ -6,6 +6,7 @@ import { Separator } from './separator';
 import Image from 'next/image';
 import logo from '../../../public/zenStream.svg'
 import { useRouter } from 'next/navigation';
+import { useUserStore } from '@/store/store';
 
 type PropsType = {
     cardTitle: string,
@@ -19,10 +20,11 @@ function SideMenuCard(props:PropsType) {
     const cardContent = props.cardContent;
     const cardImage = props.cardImage;
     const topicPath = "/topics/" + cardTitle.trim(); 
-
+    const searchDivRef = useUserStore((state) => state.searchDivRef); 
     const handleClick = () => {
         console.log("clicked");
-        location.replace(topicPath);
+        searchDivRef?.current?.click(); 
+        //location.replace(topicPath);
     }
 
   return (

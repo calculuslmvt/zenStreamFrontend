@@ -1,7 +1,7 @@
 "use client"
 import { ContentDrawer } from "@/components/ui/content-drawer";
 import Loading from "@/components/ui/loading";
-import { ContentTabs } from "@/components/ui/tabs";
+import { ContentSection } from "@/components/ui/tabs";
 import { useUserStore } from "@/store/store";
 import axios from 'axios'; 
 import { useEffect, useState } from "react";
@@ -23,7 +23,7 @@ type PropType = {
 export default function Home() {
 
   console.log("starting app");  
-  const [component, setComponent] = useState(<ContentTabs/>); 
+  const [component, setComponent] = useState(<div>Component Div</div>); 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +37,7 @@ export default function Home() {
                   contentData: response.data?.data
                 }
                 console.log(response.data); 
-                setComponent(<ContentTabs {...topicData}/>);
+                setComponent(<ContentSection {...topicData}/>);
                 setLoading(false);
               })
         

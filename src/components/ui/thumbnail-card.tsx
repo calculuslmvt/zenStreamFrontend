@@ -1,5 +1,4 @@
 import React from 'react'
-import VideoPlayer from '../video-player/video-player';
 
 function ThumbnailCard({...props}) {
   return (
