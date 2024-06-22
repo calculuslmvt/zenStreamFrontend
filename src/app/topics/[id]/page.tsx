@@ -8,7 +8,7 @@ import Loading from '@/components/ui/loading';
 function Topics({ params }: { params: { id:string } }) {
 
     const topicName = params.id;
-    const [component, setComponent] = useState(<ContentSection/>); 
+    const [component, setComponent] = useState(<div>Content Section</div>); 
     const [loading, setLoading] = useState(true); 
     useEffect(() => {
     const fetchData = async () => {

@@ -72,7 +72,7 @@ export default function RootLayout({
                 </Link>
             </div>
           </div>
-          <div className="flex w-full justify-center z-[9999]">
+          <div className="flex w-full justify-start z-[9999]">
             <MainNavigationMenu/>
           </div>
           <div className=" hidden sm:flex w-1/3 gap-4 justify-center items-center">

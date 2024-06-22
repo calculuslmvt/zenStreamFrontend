@@ -1,13 +1,13 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { ContentTabs } from '@/components/ui/tabs';
+import { ContentSection } from '@/components/ui/tabs';
 import axios from 'axios';
 import Loading from '@/components/ui/loading';
 
 function Favourites() {
 
-    const [component, setComponent] = useState(<ContentTabs/>); 
+    const [component, setComponent] = useState(<div>Favourite Section</div>); 
     const [loading, setLoading] = useState(true); 
     useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +26,7 @@ function Favourites() {
                 contentData: response.data?.data
             }
             console.log(response.data); 
-            setComponent(<ContentTabs {...topicData}/>);
+            setComponent(<ContentSection {...topicData}/>);
             setLoading(false);
             })
         } catch (error) {
