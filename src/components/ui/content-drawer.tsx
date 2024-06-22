@@ -82,11 +82,11 @@ export function ContentDrawer(props: PropsType) {
     </div>
   )
   const setCurrentVideo = useUserStore((state) => state.setCurrentVideo); 
-  const setVideoTitle = useUserStore((state) => state.setVideoUrl); 
+  const setVideoUrl = useUserStore((state) => state.setVideoUrl); 
   // handling view toggle
   const handleClick = () =>{
     setCurrentVideo(videoTitle); 
-    setVideoTitle(videoUrl);
+    setVideoUrl(videoUrl);
   }
 
 

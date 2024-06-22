@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactPlayer from 'react-player';
 import Loading from '../ui/loading';
 import { useUserStore } from '@/store/store';
@@ -23,7 +23,13 @@ function VideoPlayer() {
   }
   const [loadingDisplay, setLoadingDisplay] = useState("visible"); 
   const videoId = useUserStore((state) => state.videoUrl);
-  const videoUrl = 'https://www.youtube.com/embed/' +  videoId; 
+  const [videoUrl, setVideoUrl] = useState("");
+
+  useEffect(()=>{
+    setVideoUrl('https://www.youtube.com/embed/' +  videoId);
+  },[videoId]);
+
+
   console.log(videoUrl); 
   return (
     <div className='w-full h-full  flex justify-center items-center '>

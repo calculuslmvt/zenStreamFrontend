@@ -49,9 +49,13 @@ export function ContentSection(props : PropType ) {
   const [videoTitle, setVideoTitle] = useState("");
   const currentVideo = useUserStore((state)=> state.currentVideo);
   const setVideoUrl = useUserStore((state) => state.setVideoUrl); 
-  if(topicContent) {
-    setVideoUrl(topicContent[0]?.videoFile); 
-  }
+
+  useEffect(()=>{
+      if(topicContent) {
+        setVideoUrl(topicContent[0]?.videoFile); 
+      }
+  },[topicContent])
+
   useEffect(()=> {
       setVideoTitle(currentVideo); 
   },[currentVideo]);
