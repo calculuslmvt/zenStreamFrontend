@@ -19,7 +19,8 @@ import { Separator } from "@/components/ui/separator"
 import SideMenuCard from "./side-menu-card"
 import { DropMenu } from "./accordion"
 import axios from "axios"
-import { Key, useEffect, useState } from "react"
+import { Key, useEffect, useRef, useState } from "react"
+import { useUserStore } from "@/store/store"
 
 type PropsType = {
   cardTitle: string,
@@ -52,7 +53,14 @@ useEffect(()=> {
       
   }
   fetchData(); 
-},[])
+},[]);
+
+const sideMenuCloseDiv = useRef(null);
+const setSideMenuDivRef = useUserStore((state) => state.setSideMenuDivRef);
+useEffect(() => {
+  setSideMenuDivRef(sideMenuCloseDiv); 
+},[sideMenuCloseDiv])
+  
 
   return (
     <Sheet>
@@ -66,7 +74,10 @@ useEffect(()=> {
                 <div className="flex justify-center items-center">
                     
                     <SheetClose>
+                      <div ref={sideMenuCloseDiv}>
                         <Button variant="outline"> = </Button>
+                      </div>
+                        
                     </SheetClose>
                 </div>                                                
                 

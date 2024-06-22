@@ -25,11 +25,18 @@ export function SearchBar({content}: Props) {
   const setSearchDivRef = useUserStore((state)=>state.setSearchDivRef);
   React.useEffect(()=>{
     setSearchDivRef(searchDivRef); 
-  },[searchDivRef]);
 
+    setTimeout(()=>{
+     searchDivRef?.current?.click();  
+    }, 4000)
+    
+  },[searchDivRef]);
+  const handleClick = ()=>{
+    console.log("search bar clicked"); 
+  }
   return (
     <Command className="rounded-lg border shadow-md p-2 bg-black/50 backdrop-blur-xl h-screen">
-      <div ref={searchDivRef}>
+      <div ref={searchDivRef} onClick={handleClick}>
         <CommandInput placeholder="Search..."/>
       </div>
       

@@ -53,7 +53,7 @@ export default function RootLayout({
 
           {/* Nav bar  */}
           <div className="flex flex-row py-2 bg-slate-900/40 backdrop-blur-sm">
-            <div className="w-1/3 flex">
+            <div className="flex">
                 <div className="flex justify-center items-center px-2">
                     <SideMenu/>
                 </div>

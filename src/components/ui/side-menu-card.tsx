@@ -20,10 +20,11 @@ function SideMenuCard(props:PropsType) {
     const cardContent = props.cardContent;
     const cardImage = props.cardImage;
     const topicPath = "/topics/" + cardTitle.trim(); 
-    const searchDivRef = useUserStore((state) => state.searchDivRef); 
+    const sideMenuDivRef = useUserStore((state) => state.sideMenuDivRef); 
+    
     const handleClick = () => {
-        console.log("clicked");
-        searchDivRef?.current?.click(); 
+        console.log("clicked"); 
+        sideMenuDivRef?.current?.click();
         //location.replace(topicPath);
     }
 

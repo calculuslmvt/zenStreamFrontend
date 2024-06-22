@@ -28,17 +28,11 @@ export function ContentSection(props : PropType ) {
     setContentDivRef(contentRef);
   }, [contentRef]);
 
-  const contentComponent = (
-    <div className="flex w-full flex-wrap gap-2 bg-black/30 p-2 rounded-lg scroll-m-1 overflow-auto scrollbar-hide scroll-smooth">
-      {topicContent?.map((contentData) => (<ContentDrawer {...contentData}/>))}
-    </div>
-  )
-
   const VideoPlayerRef = useRef<HTMLDivElement>(null);
   const playerSectionRef = useRef<HTMLDivElement>(null);
 
   // handling maximise 
-  const [expanded, setExpanded] = useState(false);
+  let expanded = false; 
   const handleClick = () => {
     console.log("toggling view");
     if(contentRef.current && VideoPlayerRef.current && playerSectionRef.current) {
@@ -49,24 +43,27 @@ export function ContentSection(props : PropType ) {
         playerSectionRef?.current.classList.toggle("w-full");
     }
 
-    if(!expanded) {
-      setExpanded(true);
-    }
-    else {
-      setExpanded(false);
-    }
+    expanded = !expanded; 
   }
 
   const [videoTitle, setVideoTitle] = useState("");
   const currentVideo = useUserStore((state)=> state.currentVideo);
-
+  const setVideoUrl = useUserStore((state) => state.setVideoUrl); 
+  if(topicContent) {
+    setVideoUrl(topicContent[0]?.videoFile); 
+  }
   useEffect(()=> {
       setVideoTitle(currentVideo); 
-  },[currentVideo])
+  },[currentVideo]);
 
+  const searchDivRef = useUserStore((state) => state.searchDivRef); 
+
+  useEffect(() => {
+       searchDivRef?.current?.click(); 
+  },[searchDivRef])
 
   return (
-    <div className="flex flex-col p-4 px-12 w-full bg-black/40 h-screen backdrop-blur-sm z-{-1} fixed">
+    <div className="flex flex-col p-4 px-12 w-full bg-black/40 h-screen backdrop-blur-sm z-[-1] fixed">
       <div className="flex text-3xl text-slate-100 items-center w-full px-2">
         {topicName}
       </div>
