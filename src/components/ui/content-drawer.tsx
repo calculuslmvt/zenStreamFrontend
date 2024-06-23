@@ -5,13 +5,13 @@ import {
   DrawerContent,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import ThumbnailCard from "./thumbnail-card"
 import VideoPlayer from "../video-player/video-player"
 import { Separator } from "./separator"
 import axios from "axios"
 import { useState } from "react"
 import Link from "next/link"
 import { useUserStore } from "@/store/store"
+import VideoCard from "./thumbnail-card"
 
 type PropsType = {
   title: string,
@@ -93,7 +93,7 @@ export function ContentDrawer(props: PropsType) {
   return (
     <div>
         <button onClick={handleClick}>
-          <ThumbnailCard videoThumbnail = {videoThumbnail} videoTitle = {videoTitle} />
+          <VideoCard videoThumbnail = {videoThumbnail} videoTitle = {videoTitle} videoDescription = {videoTextContent} />
         </button>
     </div>
     // <Drawer>

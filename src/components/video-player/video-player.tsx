@@ -32,7 +32,7 @@ function VideoPlayer() {
 
   console.log(videoUrl); 
   return (
-    <div className='w-full h-full  flex justify-center items-center '>
+    <div className='w-full h-full  flex justify-center items-center'>
       <iframe 
         className='rounded-lg h-full w-full'
         src={videoUrl}
