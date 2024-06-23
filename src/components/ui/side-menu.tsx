@@ -182,7 +182,7 @@ const Sidebar = () => {
           return (
           <div
             key={index}
-            className={`${isCollapsed ? 'w-16 h-12 rounded-md' : 'w-64 h-24 rounded-sm'} transition-all gap-2 duration-300  text-xs bg-indigo-800/70  flex items-center justify-center cursor-pointer hover:bg-indigo-500`}
+            className={`${isCollapsed ? 'w-16 h-12 rounded-md bg-indigo-800/70' : 'w-64 h-24 rounded-sm bg-blue-900/90'} transition-all gap-2 duration-300  text-xs   flex items-center justify-center cursor-pointer hover:bg-indigo-500`}
           >
             {isCollapsed ? <Link className = "w-full h-full flex items-center justify-center" href={topicPath}>{topic.topicName.substring(0, 3)}</Link>: <SideMenuCard {...topic} />}
 

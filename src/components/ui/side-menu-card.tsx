@@ -27,21 +27,18 @@ function SideMenuCard(props:Topic) {
         sideMenuDivRef?.current?.click();
         //location.replace(topicPath);
     }
-const [component, setComponent] = useState("")
+const [component, setComponent] = useState(<div></div>)
 setTimeout(() => {
-    setComponent(cardContent.substring(0, 40) + "...."); 
-}, 500); 
-
-  return (
-    <Link href={topicPath} onClick={handleClick}>
-        <div className='w-full bg-indigo-800/70 rounded-md p-2 flex'>
+    setComponent(
+        <Link href={topicPath} onClick={handleClick}>
+        <div className='w-full bg-blue-900/90 rounded-md p-2 flex'>
             <div className='w-3/5 flex-col px-4 gap-2'>
                 <div className='flex gap-2 items-center'>
                    {cardTitle}
                 </div>
               
                 <div className='text-xs text-slate-200/80'>
-                    {component}
+                    {cardContent.substring(0, 40) + "...."}
                 </div>
             </div>
             <div className='flex items-center'>
@@ -61,6 +58,13 @@ setTimeout(() => {
             </div>
         </div>
     </Link>
+    ); 
+}, 200); 
+
+  return (
+    <div>
+       {component} 
+    </div>
   )
 }
 
