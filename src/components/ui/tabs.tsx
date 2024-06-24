@@ -32,7 +32,8 @@ export function ContentSection(props : PropType ) {
   const playerSectionRef = useRef<HTMLDivElement>(null);
 
   // handling maximise 
-  let expanded = false; 
+  let [expanded, setExpanded] = useState(false); 
+  const [playerSize, setPlayerSize] = useState("maximise"); 
   const handleClick = () => {
     console.log("toggling view");
     if(contentRef.current && VideoPlayerRef.current && playerSectionRef.current) {
@@ -42,8 +43,7 @@ export function ContentSection(props : PropType ) {
         playerSectionRef?.current.classList.toggle("w-1/3");
         playerSectionRef?.current.classList.toggle("w-full");
     }
-
-    expanded = !expanded; 
+    setExpanded(!expanded); 
   }
 
   const [videoTitle, setVideoTitle] = useState("");
@@ -90,8 +90,8 @@ export function ContentSection(props : PropType ) {
             <button
               onClick={handleClick}
               className="bg-black p-1 text-slate-300 rounded-md text-xs">
-              {expanded ? "Minimise" : "Maximise"}
-            </button>
+              {expanded ? "Minimise" : " Maximise"}
+            </button> 
             <div className="w-2/5 text-slate-300">
               {videoTitle}
             </div>
