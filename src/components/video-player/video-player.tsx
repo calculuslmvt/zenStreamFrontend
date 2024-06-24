@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 import Loading from '../ui/loading';
 import { useUserStore } from '@/store/store';
@@ -29,15 +29,18 @@ function VideoPlayer() {
     setVideoUrl('https://www.youtube.com/embed/' +  videoId);
   },[videoId]);
 
+  const videoRef = useRef<HTMLIFrameElement>(null); 
 
   console.log(videoUrl); 
   return (
-    <div className='w-full h-full  flex justify-center items-center'>
+    <div className='w-full h-full  flex justify-center items-center' ref={videoRef}>
       <iframe 
+        
         className='rounded-lg h-full w-full'
         src={videoUrl}
         allowFullScreen
-        allowTransparency>
+        allowTransparency
+        allow='autoPlay=1'>
       </iframe>
     </div>
   )

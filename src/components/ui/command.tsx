@@ -167,7 +167,7 @@ const CommandItem = React.forwardRef<
   const childRef = React.useRef<HTMLDivElement>(null);
   const parent = childRef?.current?.parentElement;
   if (parent) {
-    parent.classList.add('flex', 'flex-wrap', 'justify-start', 'overflow-y-auto', 'h-[30rem]'); // Add Tailwind classes to the parent
+    parent.classList.add('flex', 'flex-wrap', 'justify-start', 'overflow-y-auto', 'h-full'); // Add Tailwind classes to the parent
   }
   return(
   <CommandPrimitive.Item

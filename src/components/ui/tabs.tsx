@@ -67,7 +67,7 @@ export function ContentSection(props : PropType ) {
   },[searchDivRef])
 
   return (
-    <div className="flex flex-col p-4 px-12 w-full bg-black/40 h-screen backdrop-blur-sm z-[-1] fixed my-16">
+    <div className="flex flex-col p-4 px-12 w-full bg-black/40 h-screen backdrop-blur-sm z-[-1] fixed my-16 overflow-y-auto">
       <div className="flex text-3xl text-slate-100 items-center w-full px-2 mx-4">
         {topicName}
       </div>
@@ -75,15 +75,15 @@ export function ContentSection(props : PropType ) {
       <div className="flex">
         <div
           ref = {contentRef}
-          className="flex p-4 w-2/3 transition-all duration-400">
+          className="flex p-4 w-2/3 transition-all duration-700">
           <SearchBar content = {topicContent}/>
         </div>
         <div 
           ref = {playerSectionRef}
-          className="flex flex-col w-1/3 overflow-y-auto h-full transition-all duration-400">
+          className="flex flex-col w-1/3 overflow-y-auto h-full transition-all duration-700">
           <div
             ref={VideoPlayerRef}
-            className="flex w-full h-2/5 flex-wrap my-4 bg-black/30 p-2 rounded-lg transition-all duration-400">
+            className="flex w-full h-2/5 flex-wrap my-4 bg-black/30 p-2 rounded-lg transition-all duration-1000">
             <VideoPlayer/>
           </div>
           <div className="flex w-full flex-wrap bg-black/30 p-2 rounded-lg gap-2">
